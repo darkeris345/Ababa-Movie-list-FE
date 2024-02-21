@@ -2,10 +2,13 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
+import Home from "./pages/HomePage/Home";
 import MoviesList from "./pages/Movies/MoviesList";
 import PageNotFound from "./pages/PageNotFound";
-import Login from "./pages/Login";
+import Login from "./pages/LoginPage/Login";
+import Register from "./pages/RegisterPage/Register";
+import Header from "./components/Header/Header";
+import NavBar from "./components/NavBar/NavBar";
 import { getAllDataPaginated } from "./services/get";
 
 function App() {
@@ -19,7 +22,6 @@ function App() {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(savedPage);
   const [perPage, setPerPage] = useState(savedPerPage);
-
 
   const fetchData = async () => {
     try {
@@ -36,13 +38,9 @@ function App() {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [page, update, perPage, searchQuery]);
-
-  useEffect(() => {
     localStorage.setItem("perPage", perPage.toString());
     localStorage.setItem("page", page.toString());
-  }, [perPage, page]);
+  }, [page, update, perPage, searchQuery]);
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
@@ -50,7 +48,10 @@ function App() {
 
   return (
     <>
+      <NavBar />
+      <Header />
       <Routes>
+
         <Route path="/" element={<Home />} />
         <Route
           path="/movies"
@@ -67,10 +68,12 @@ function App() {
               setPerPage={setPerPage}
               update={update}
               setUpdate={setUpdate}
+              fetchData={fetchData}
             />
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>

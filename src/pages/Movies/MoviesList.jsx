@@ -3,6 +3,7 @@ import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
 import PaginationComponent from "../../components/Pagination/Pagination";
 import "./MoviesList.css";
 import { RiseLoader } from "react-spinners";
+import { useEffect } from "react";
 
 function MoviesList({
   movies,
@@ -16,7 +17,12 @@ function MoviesList({
   setPerPage,
   update,
   setUpdate,
+  fetchData,
 }) {
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+  
   const filteredMovies = movies.filter((movie) =>
     movie.Title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -31,10 +37,9 @@ function MoviesList({
         {loading && (
           <RiseLoader
             color="#36d7b7"
-            size={15}
+            size={30}
             aria-label="Loading Spinner"
             data-testid="loader"
-            style={{ marginLeft: "45%" }}
           />
         )}
       </div>

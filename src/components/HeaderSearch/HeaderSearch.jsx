@@ -1,5 +1,5 @@
 import Input from "@mui/joy/Input";
-import "./HeaderSearch.css";
+import "./HeaderSearch.scss";
 
 function HeaderSearch({ onSearchChange }) {
   const handleSearchChange = (event) => {

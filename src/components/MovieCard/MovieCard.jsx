@@ -4,8 +4,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import MovieInfo from "./MovieInfo";
+import MovieInfo from "../MovieInfo/MovieInfo";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import "./MovieCard.scss";
 
 function MovieCard({ movie }) {
   const { Title, Year, Poster, Genre, Runtime } = movie;
@@ -22,8 +23,8 @@ function MovieCard({ movie }) {
 
   const handleFavourite = () => {
     setIsFavourite(!isFavourite);
+    
   };
-
 
   return (
     <>
@@ -48,7 +49,13 @@ function MovieCard({ movie }) {
             minHeight: 200,
           }}
         >
-          <Typography gutterBottom color="text.primary" sx={{ fontWeight: "bold", height: 50 }}  variant="h6" component="div">
+          <Typography
+            gutterBottom
+            color="text.primary"
+            sx={{ fontWeight: "bold", height: 50 }}
+            variant="h6"
+            component="div"
+          >
             {Title} ({Year})
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -65,7 +72,7 @@ function MovieCard({ movie }) {
             }}
           >
             <Button
-              sx={{ width: "50%", borderRadius: "12px"}}
+              sx={{ width: "50%", borderRadius: "12px", mr: 4 }}
               variant="contained"
               color="warning"
               onClick={handleOpenModal}
