@@ -170,6 +170,7 @@ import { deleteMovieFromFavorites } from "../../services/updateUser";
 
 function MovieCard({ movie }) {
   const { _id, Title, Year, Poster, Genre, Runtime } = movie;
+
   const userId = localStorage.getItem("userId");
 
   const [isModalOpen, setIsModalOpen] = useState(false);

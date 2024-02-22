@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header/Header";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuthContext } from "./hooks/useAuthContext";
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./pages/HomePage/Home";
 import MoviesList from "./pages/Movies/MoviesList";
@@ -14,6 +14,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const { user } = useAuthContext();
+
+  // Pagination settings saved
   const savedPerPage = parseInt(localStorage.getItem("perPage")) || 4;
   const savedPage = parseInt(localStorage.getItem("page")) || 1;
 
@@ -51,40 +54,56 @@ function App() {
   return (
     <>
       <NavBar />
-      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={!user ? <Home /> : <Navigate to="/movies" />}
+        />
         <Route
           path="/movies"
           element={
-            <MoviesList
-              movies={movies}
-              loading={loading}
-              searchQuery={searchQuery}
-              onSearchChange={handleSearchChange}
-              total={total}
-              page={page}
-              setPage={setPage}
-              perPage={perPage}
-              setPerPage={setPerPage}
-              update={update}
-              setUpdate={setUpdate}
-              fetchData={fetchData}
-            />
+            !user ? (
+              <Navigate to="/" />
+            ) : (
+              <MoviesList
+                movies={movies}
+                loading={loading}
+                searchQuery={searchQuery}
+                onSearchChange={handleSearchChange}
+                total={total}
+                page={page}
+                setPage={setPage}
+                perPage={perPage}
+                setPerPage={setPerPage}
+                update={update}
+                setUpdate={setUpdate}
+                fetchData={fetchData}
+              />
+            )
           }
         />
         <Route
           path="/favourites"
           element={
-            <FavouritesMovies
-              movies={movies}
-              searchQuery={searchQuery}
-              onSearchChange={handleSearchChange}
-            />
+            !user ? (
+              <Navigate to="/" />
+            ) : (
+              <FavouritesMovies
+                movies={movies}
+                searchQuery={searchQuery}
+                onSearchChange={handleSearchChange}
+              />
+            )
           }
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/movies" /> : <Login />}
+        />
+        <Route
+          path="/register"
+          element={user ? <Navigate to="/movies" /> : <Register />}
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 

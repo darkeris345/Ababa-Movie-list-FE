@@ -1,40 +1,26 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRegister } from "../../services/useRegister";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import "./RegisterForm.scss";
 import { Link } from "react-router-dom";
-import { registerUser } from "../../services/registerUser";
-import { toast } from "react-toastify";
+
 
 function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { registerUser, isLoading, error } = useRegister();
 
-  const navigate = useNavigate();
 
   const handleRegistration = async (e) => {
     e.preventDefault();
 
-    if (!username || !password) {
-      toast.error("Username and password are required.");
-      return;
-    }
     try {
-      const response = await registerUser({ username, password });
-      if (response.error) {
-        toast.error( "Username already exists. Please choose a different username" );
-      } else {
-        toast.success("Registration successful");
-        setTimeout(() => {
-          navigate("/login");
-        }, 2000);
-      }
+      await registerUser({ username, password });
     } catch (error) {
       console.error("Registration failed:", error);
-      toast.error("Registration failed. Please try again later.");
     }
   };
 
@@ -55,24 +41,30 @@ function RegisterForm() {
             required
             id="username"
             label="Username"
-            value={username}
             onChange={(e) => setUsername(e.target.value)}
+            value={username}
           />
           <TextField
             required
             id="password"
             label="Password"
             type="password"
-            value={password}
             onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
         </div>
         <Typography sx={{ mb: 2 }} variant="body2" gutterBottom>
           Already have an account? <Link to="/login">Login</Link>
         </Typography>
-        <Button variant="contained" color="warning" type="submit">
+        <Button
+          disabled={isLoading}
+          variant="contained"
+          color="warning"
+          type="submit"
+        >
           Create account
         </Button>
+        {error && <Typography color="error">{error}</Typography>}
       </Box>
     </div>
   );

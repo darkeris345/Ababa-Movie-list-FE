@@ -13,11 +13,11 @@ export const getAllDataPaginated = async (page, count) => {
     return { data: null, totalCount: 0 };
   }
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
   try {
     const response = await axios.get(
       `${API_URL}?_page=${page}&_per_page=${count}`
     );
-    console.log("Response:", response.data);
     return {
       data: response.data,
       totalCount: response.headers["x-total-count"],
@@ -30,6 +30,10 @@ export const getAllDataPaginated = async (page, count) => {
 
 // Getting favourite list
 export const getFavouriteMovies = async (userId) => {
+  const token = localStorage.getItem("token");
+
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
   try {
     const response = await axios.get(`${API_URL_AUTH}/${userId}`);
     return response.data;

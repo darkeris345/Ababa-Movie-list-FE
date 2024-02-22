@@ -23,3 +23,16 @@
         border-right: 1px solid #494848;
     }
 }
+
+.loggedNav {
+    display: flex;
+    flex-direction: column;
+
+    .userHeader {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
