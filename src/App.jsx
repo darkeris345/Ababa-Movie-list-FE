@@ -86,12 +86,14 @@ function App() {
           path="/favourites"
           element={
             !user ? (
-              <Navigate to="/" />
+              <Navigate to="/favourites" />
             ) : (
               <FavouritesMovies
                 movies={movies}
                 searchQuery={searchQuery}
                 onSearchChange={handleSearchChange}
+                setUpdate={setUpdate}
+                update={update}
               />
             )
           }
@@ -107,7 +109,7 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 
-      <ToastContainer position="top-center" autoClose={2000} />
+      <ToastContainer position="top-center" autoClose={1500} />
     </>
   );
 }

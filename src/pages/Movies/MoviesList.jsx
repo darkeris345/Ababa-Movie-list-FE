@@ -22,7 +22,7 @@ function MoviesList({
   useEffect(() => {
     fetchData();
   }, [page, perPage, update]);
-  
+
   const filteredMovies = movies.filter((movie) =>
     movie.Title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -32,7 +32,12 @@ function MoviesList({
       <HeaderSearch onSearchChange={onSearchChange} value={searchQuery} />
       <div className="moviesList">
         {filteredMovies.map((movie) => (
-          <MovieCard key={movie._id} movie={movie} />
+          <MovieCard
+            key={movie._id}
+            movie={movie}
+            setUpdate={setUpdate}
+            update={update}
+          />
         ))}
         {loading && (
           <RiseLoader
@@ -49,8 +54,6 @@ function MoviesList({
         setPage={setPage}
         perPage={perPage}
         setPerPage={setPerPage}
-        update={update}
-        setUpdate={setUpdate}
       />
     </>
   );

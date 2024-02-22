@@ -2,7 +2,7 @@ import { getFavouriteMovies } from "../../services/get";
 import { useState, useEffect } from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
-function FavouriteMovie({ onSearchChange, searchQuery }) {
+function FavouriteMovie({ onSearchChange, searchQuery, setUpdate, update }) {
   const userId = localStorage.getItem("userId");
   const [favouriteList, setFavouriteList] = useState([]);
 
@@ -13,7 +13,7 @@ function FavouriteMovie({ onSearchChange, searchQuery }) {
 
   useEffect(() => {
     fetchDataFavourite();
-  }, []);
+  }, [update]);
 
   const filteredMovies = favouriteList.filter((movie) =>
     movie.Title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -30,6 +30,7 @@ function FavouriteMovie({ onSearchChange, searchQuery }) {
               key={movie._id}
               movie={movie}
               favouriteList={favouriteList}
+              setUpdate={setUpdate}
             />
           );
         })}

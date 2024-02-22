@@ -4,7 +4,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-
 const API_URL_AUTH = import.meta.env.VITE_AUTH_API_URL;
 
 export const useLogin = () => {
@@ -45,14 +44,13 @@ export const useLogin = () => {
         toast.error(data.error);
       } else {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("username", data.username);
         localStorage.setItem("userId", data._id);
         localStorage.setItem("user", JSON.stringify(data));
         dispatch({ type: "LOGIN", payload: data });
       }
     } catch (error) {
-      setError("An error occurred during registration.");
-      toast.error("An error occurred during registration.");
+      setError("An error occurred during login.");
+      toast.error("An error occurred during login.");
     } finally {
       setIsLoading(false);
     }

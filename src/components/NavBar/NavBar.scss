@@ -3,24 +3,9 @@
     justify-content: center;
     background: rgba(6, 5, 39, 0.062);
 
-    a {
-        margin: 1rem;
-        text-decoration: none;
-        color: #f0efee;
-        font-size: 1.5rem;
-        padding: 0.2rem;
-    }
+    .activeLink:hover {
+        color: rgba(255, 9, 9, 0.568);
 
-    a:hover {
-        color: rgb(10, 10, 10);
-        border-left: 1px solid #494848;
-        border-right: 1px solid #494848;
-    }
-
-    a:active {
-        color: rgb(10, 10, 10);
-        border-left: 1px solid #494848;
-        border-right: 1px solid #494848;
     }
 }
 
@@ -35,4 +20,28 @@
         gap: 1rem;
         padding: 1rem;
     }
+}
+
+.navbar {
+    .activeLink {
+
+        margin: 1rem;
+        text-decoration: none;
+        color: #f0efee;
+        font-size: 1.5rem;
+        padding: 0.3rem;
+        margin: 1rem;
+        transition: color 0.3s, border-left 0.3s, border-right 0.3s;
+    }
+}
+
+
+.navbar {
+    .activeLink.active {
+
+        color: rgb(10, 10, 10);
+        border-left: 1px solid #494848;
+        border-right: 1px solid #494848;
+    }
+
 }

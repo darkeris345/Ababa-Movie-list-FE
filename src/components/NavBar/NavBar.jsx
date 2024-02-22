@@ -1,44 +1,52 @@
-import { Link } from "react-router-dom";
 import "./NavBar.scss";
-import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import Button from "@mui/material/Button";
 
 function NavBar() {
   const navigate = useNavigate();
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const location = useLocation();
+  const userName = user?.username;
 
   const handleLogout = () => {
     logout();
 
-    if (window.location.pathname !== "/login") {
+    if (location.pathname !== "/login") {
       navigate("/login");
     }
   };
-
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const userName = userData?.username;
 
   return (
     <>
       <nav className="navbar">
         {!user && (
           <>
-            <Link to="/">Home</Link>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
+            <NavLink to="/" className="activeLink">
+              Home
+            </NavLink>
+            <NavLink to="/register" className="activeLink">
+              Register
+            </NavLink>
+            <NavLink to="/login" className="activeLink">
+              Login
+            </NavLink>
           </>
         )}
       </nav>
 
       {user && (
         <div className="loggedNav">
-          <div className="navbar">
-            <Link to="/movies">Movies</Link>
-            <Link to="/favourites">Favorites</Link>
-          </div>
+          <nav className="navbar">
+            <NavLink to="/movies" className="activeLink">
+              Movies
+            </NavLink>
+            <NavLink to="/favourites" className="activeLink">
+              Favorites
+            </NavLink>
+          </nav>
 
           <div className="userHeader">
             <span>
