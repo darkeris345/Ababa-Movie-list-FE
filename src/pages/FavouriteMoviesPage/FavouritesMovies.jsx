@@ -22,17 +22,17 @@ function FavouriteMovie({ onSearchChange, searchQuery }) {
   return (
     <>
       <HeaderSearch onSearchChange={onSearchChange} value={searchQuery} />
+
       <div className="moviesList">
-      {filteredMovies.map((movie) => {
-        return (
-          <MovieCard
-            key={movie._id}
-            movie={movie}
-            favouriteList={favouriteList}
-            fetchDataFavourite={fetchDataFavourite}
-          />
-        );
-      })}
+        {filteredMovies.map((movie) => {
+          return (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              favouriteList={favouriteList}
+            />
+          );
+        })}
       </div>
     </>
   );

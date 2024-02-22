@@ -34,7 +34,7 @@ const Header = () => {
             </span>
             !
           </span>
-          <Button size="large" onClick={handleLogout}>
+          <Button variant="contained" color="error" size="large" onClick={handleLogout}>
             Logout
           </Button>
         </>

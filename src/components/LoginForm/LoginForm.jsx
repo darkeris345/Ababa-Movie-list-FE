@@ -7,8 +7,7 @@ import Typography from "@mui/material/Typography";
 import "./LoginForm.scss";
 import { Link } from "react-router-dom";
 import { loginUser } from "../../services/loginUser";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -82,7 +81,6 @@ function LoginForm() {
           Log in
         </Button>
       </Box>
-      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 }

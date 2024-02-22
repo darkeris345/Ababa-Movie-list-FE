@@ -12,7 +12,7 @@ function HeaderSearch({ onSearchChange }) {
         variant="solid"
         type="text"
         size="lg"
-        placeholder="Type in here…"
+        placeholder="Type movie title here..."
         onChange={handleSearchChange}
       />
     </>

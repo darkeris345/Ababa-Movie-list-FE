@@ -1,7 +1,7 @@
 import MovieCard from "../../components/MovieCard/MovieCard";
 import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
 import PaginationComponent from "../../components/Pagination/Pagination";
-import "./MoviesList.css";
+import "./MoviesList.scss";
 import { RiseLoader } from "react-spinners";
 import { useEffect } from "react";
 

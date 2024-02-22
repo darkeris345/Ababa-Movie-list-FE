@@ -37,6 +37,14 @@ function MovieInfo({ movie, open, onClose }) {
           <Typography id="modal-desc" textColor="text.tertiary">
             {Plot}
           </Typography>
+          {/* <iframe
+              width="100%"
+              height="200"
+              src={TrailerUrl}
+              title={`${Title} Trailer`}
+              frameBorder="0"
+              allowFullScreen
+            ></iframe> */}
         </Sheet>
       </Modal>
     </>

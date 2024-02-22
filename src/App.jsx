@@ -10,6 +10,8 @@ import Login from "./pages/LoginPage/Login";
 import FavouritesMovies from "./pages/FavouriteMoviesPage/FavouritesMovies";
 import PageNotFound from "./pages/PageNotFound";
 import { getAllDataPaginated } from "./services/get";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const savedPerPage = parseInt(localStorage.getItem("perPage")) || 4;
@@ -85,6 +87,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+
+      <ToastContainer position="top-center" autoClose={2000} />
     </>
   );
 }

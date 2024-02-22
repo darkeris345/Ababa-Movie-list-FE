@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import "./RegisterForm.scss";
 import { Link } from "react-router-dom";
 import { registerUser } from "../../services/registerUser";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 function RegisterForm() {
   const [username, setUsername] = useState("");
@@ -74,7 +74,6 @@ function RegisterForm() {
           Create account
         </Button>
       </Box>
-      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 }
