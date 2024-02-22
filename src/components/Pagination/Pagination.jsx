@@ -20,11 +20,9 @@ function PaginationComponent({ total, page, setPage, perPage, setPerPage }) {
           variant="outlined"
           onChange={(e, value) => setPage(value)}
         />
-        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-          <InputLabel id="demo-select-small-label">Pages Count</InputLabel>
+        <FormControl sx={{ m: 1, minWidth: 120 }} size="medium">
+          <InputLabel>Pages Count</InputLabel>
           <Select
-            labelId="demo-select-small-label"
-            id="demo-select-small"
             label="Per Page Count"
             onChange={(e) => {
               setPerPage(e.target.value);

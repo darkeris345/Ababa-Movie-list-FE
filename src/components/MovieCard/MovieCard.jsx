@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -7,16 +6,18 @@ import Button from "@mui/material/Button";
 import MovieInfo from "../MovieInfo/MovieInfo";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getFavouriteMovies } from "../../services/get";
 import { updateData } from "../../services/updateUser";
 import { deleteMovieFromFavorites } from "../../services/updateUser";
+import { useAuthContext } from "../../hooks/useAuthContext";
 import "./MovieCard.scss";
 
 function MovieCard({ movie, setUpdate }) {
   const { _id, Title, Year, Poster, Genre, Runtime } = movie;
-
-  const userId = localStorage.getItem("userId");
+  const { user } = useAuthContext();
+  const userId = user?._id;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);

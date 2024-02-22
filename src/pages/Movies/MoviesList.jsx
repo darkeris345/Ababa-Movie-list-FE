@@ -39,14 +39,7 @@ function MoviesList({
             update={update}
           />
         ))}
-        {loading && (
-          <RiseLoader
-            color="#36d7b7"
-            size={30}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        )}
+        {loading && <RiseLoader color="#36d7b7" size={30} />}
       </div>
       <PaginationComponent
         total={total}

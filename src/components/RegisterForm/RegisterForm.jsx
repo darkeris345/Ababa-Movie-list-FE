@@ -7,12 +7,10 @@ import Typography from "@mui/material/Typography";
 import "./RegisterForm.scss";
 import { Link } from "react-router-dom";
 
-
 function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { registerUser, isLoading, error } = useRegister();
-
 
   const handleRegistration = async (e) => {
     e.preventDefault();

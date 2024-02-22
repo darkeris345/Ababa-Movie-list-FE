@@ -8,7 +8,7 @@ function HeaderSearch({ onSearchChange }) {
   return (
     <>
       <Input
-      className="search"
+        className="search"
         variant="solid"
         type="text"
         size="lg"

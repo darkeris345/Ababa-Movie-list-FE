@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
@@ -31,8 +30,11 @@ function App() {
   const fetchData = async () => {
     try {
       const response = await getAllDataPaginated(page, perPage);
+
       const { movies, totalCount } = response.data;
+
       if (totalCount === 0) throw new Error("No items found");
+
       setMovies(movies);
       setTotal(totalCount);
     } catch (error) {
