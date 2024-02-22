@@ -1,5 +1,11 @@
-:root{
-    background-color: rgb(232, 237, 243);
-    margin: 0;
-    padding: 0;
+:root {
+  background: rgb(6, 5, 39);
+  background: linear-gradient(
+    90deg,
+    rgba(6, 5, 39, 1) 10%,
+    rgba(194, 198, 197, 1) 57%,
+    rgba(169, 114, 40, 1) 100%
+  );
+  margin: 0;
+  padding: 0;
 }

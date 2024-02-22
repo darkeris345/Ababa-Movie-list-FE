@@ -8,12 +8,11 @@ import "./RegisterForm.scss";
 import { Link } from "react-router-dom";
 import { registerUser } from "../../services/registerUser";
 import { ToastContainer, toast } from "react-toastify";
-import { checkUsername } from "../../services/checkUsername";
-import "react-toastify/dist/ReactToastify.css";
 
 function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
   const handleRegistration = async (e) => {
@@ -23,17 +22,10 @@ function RegisterForm() {
       toast.error("Username and password are required.");
       return;
     }
-
     try {
       const response = await registerUser({ username, password });
       if (response.error) {
-        if (response.error.message === "Username already exists") {
-          toast.error(
-            "Username already exists. Please choose a different one."
-          );
-        } else {
-          toast.error(response.error);
-        }
+        toast.error( "Username already exists. Please choose a different username" );
       } else {
         toast.success("Registration successful");
         setTimeout(() => {
@@ -82,7 +74,7 @@ function RegisterForm() {
           Create account
         </Button>
       </Box>
-      <ToastContainer theme="colored" position="top-center" autoClose={2000} />
+      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 }

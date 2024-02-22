@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -6,10 +6,18 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import MovieInfo from "../MovieInfo/MovieInfo";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import "./MovieCard.scss";
+import { getFavouriteMovies } from "../../services/get";
+import {
+  updateData,
+  deleteMovieFromFavorites,
+} from "../../services/updateUser";
 
 function MovieCard({ movie }) {
-  const { Title, Year, Poster, Genre, Runtime } = movie;
+  const { _id, Title, Year, Poster, Genre, Runtime } = movie;
+
+  const userId = localStorage.getItem("userId");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
 
@@ -21,10 +29,33 @@ function MovieCard({ movie }) {
     setIsModalOpen(false);
   };
 
-  const handleFavourite = () => {
+  const handleFavourite = async () => {
     setIsFavourite(!isFavourite);
-    
+
+    try {
+      if (isFavourite) {
+        await deleteMovieFromFavorites(userId, _id);
+      } else {
+        await updateData(userId, { favouriteListes: _id });
+      }
+    } catch (error) {
+      console.error("Error updating favorite status:", error);
+    }
   };
+
+  useEffect(() => {
+    const checkFavouriteStatus = async () => {
+      try {
+        const response = await getFavouriteMovies(userId);
+        const isMovieFavorite = response.some((movie) => movie._id === _id);
+        setIsFavourite(isMovieFavorite);
+      } catch (error) {
+        console.error("Error checking favorites:", error);
+      }
+    };
+
+    checkFavouriteStatus();
+  }, [userId, _id]);
 
   return (
     <>
@@ -72,7 +103,7 @@ function MovieCard({ movie }) {
             }}
           >
             <Button
-              sx={{ width: "50%", borderRadius: "12px", mr: 4 }}
+              sx={{ width: "50%", borderRadius: "10px", mr: 4 }}
               variant="contained"
               color="warning"
               onClick={handleOpenModal}
@@ -80,21 +111,39 @@ function MovieCard({ movie }) {
               More Details
             </Button>
 
-            <FavoriteBorderIcon
-              sx={{
-                color: "red",
-                ml: 2,
-                cursor: "pointer",
-                mt: 1,
-                fontSize: 36,
-                "&:hover": {
-                  color: "purple",
-                  transform: "scale(1.1)",
-                  transition: "all 0.3s ease",
-                },
-              }}
-              onClick={handleFavourite}
-            />
+            {isFavourite ? (
+              <FavoriteIcon
+                sx={{
+                  color: "red",
+                  ml: 2,
+                  cursor: "pointer",
+                  mt: 1,
+                  fontSize: 36,
+                  "&:hover": {
+                    color: "purple",
+                    transform: "scale(1.1)",
+                    transition: "all 0.3s ease",
+                  },
+                }}
+                onClick={handleFavourite}
+              />
+            ) : (
+              <FavoriteBorderIcon
+                sx={{
+                  color: "red",
+                  ml: 2,
+                  cursor: "pointer",
+                  mt: 1,
+                  fontSize: 36,
+                  "&:hover": {
+                    color: "purple",
+                    transform: "scale(1.1)",
+                    transition: "all 0.3s ease",
+                  },
+                }}
+                onClick={handleFavourite}
+              />
+            )}
           </div>
         </CardContent>
       </Card>

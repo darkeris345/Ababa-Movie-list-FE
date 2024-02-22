@@ -21,7 +21,7 @@ function MoviesList({
 }) {
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [page, perPage, update]);
   
   const filteredMovies = movies.filter((movie) =>
     movie.Title.toLowerCase().includes(searchQuery.toLowerCase())

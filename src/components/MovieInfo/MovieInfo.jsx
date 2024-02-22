@@ -16,7 +16,8 @@ function MovieInfo({ movie, open, onClose }) {
         <Sheet
           variant="outlined"
           sx={{
-            maxWidth: 500,
+            width: 300,
+            height: 200,
             borderRadius: "lg",
             p: 5,
             boxShadow: "lg",

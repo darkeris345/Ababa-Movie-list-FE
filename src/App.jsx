@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/HomePage/Home";
-import MoviesList from "./pages/Movies/MoviesList";
-import PageNotFound from "./pages/PageNotFound";
-import Login from "./pages/LoginPage/Login";
-import Register from "./pages/RegisterPage/Register";
 import Header from "./components/Header/Header";
 import NavBar from "./components/NavBar/NavBar";
+import Home from "./pages/HomePage/Home";
+import MoviesList from "./pages/Movies/MoviesList";
+import Register from "./pages/RegisterPage/Register";
+import Login from "./pages/LoginPage/Login";
+import FavouritesMovies from "./pages/FavouriteMoviesPage/FavouritesMovies";
+import PageNotFound from "./pages/PageNotFound";
 import { getAllDataPaginated } from "./services/get";
 
 function App() {
@@ -51,7 +51,6 @@ function App() {
       <NavBar />
       <Header />
       <Routes>
-
         <Route path="/" element={<Home />} />
         <Route
           path="/movies"
@@ -69,6 +68,16 @@ function App() {
               update={update}
               setUpdate={setUpdate}
               fetchData={fetchData}
+            />
+          }
+        />
+        <Route
+          path="/favourites"
+          element={
+            <FavouritesMovies
+              movies={movies}
+              searchQuery={searchQuery}
+              onSearchChange={handleSearchChange}
             />
           }
         />

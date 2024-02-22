@@ -9,7 +9,7 @@ function HeaderSearch({ onSearchChange }) {
     <>
       <Input
       className="search"
-        variant="outlined"
+        variant="solid"
         type="text"
         size="lg"
         placeholder="Type in here…"

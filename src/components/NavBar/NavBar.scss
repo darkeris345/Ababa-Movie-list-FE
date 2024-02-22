@@ -1,18 +1,28 @@
-.navbar{
+.navbar {
     display: flex;
     justify-content: center;
-    background-color: rgb(233, 96, 17);
-    a{
+    background: rgba(6, 5, 39, 0.116);
+    width: 100vw;
+    top: -2rem;
+
+
+    a {
         margin: 1rem;
         text-decoration: none;
-        color: #fff;
+        color: #f0efee;
         font-size: 1.5rem;
+        padding: 0.5rem;
     }
-    a:hover{
+
+    a:hover {
         color: rgb(10, 10, 10);
+        border-left: 1px solid #494848;
+        border-right: 1px solid #494848;
     }
-    a:active{
-        color: rgb(0, 0, 0);
-        text-decoration: underline;
+
+    a:active {
+        color: rgb(10, 10, 10);
+        border-left: 1px solid #494848;
+        border-right: 1px solid #494848;
     }
 }

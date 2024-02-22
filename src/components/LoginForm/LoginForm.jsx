@@ -31,6 +31,7 @@ function LoginForm() {
         toast.success("Login successful");
         localStorage.setItem("token", response.token);
         localStorage.setItem("username", response.username);
+        localStorage.setItem("userId", response._id);
         setTimeout(() => {
           navigate("/movies");
         }, 2000);

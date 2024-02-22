@@ -5,7 +5,6 @@ const API_URL_AUTH = import.meta.env.VITE_AUTH_API_URL;
 export const loginUser = async ({ username, password }) => {
     try {
         const response = await axios.post(`${API_URL_AUTH}/login`, { username, password });
-        console.log('Response:', response.data);
         return response.data;
     } catch (error) {
         if (error.response) {
