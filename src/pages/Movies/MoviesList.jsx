@@ -8,8 +8,7 @@ import { useEffect } from "react";
 function MoviesList({
   movies,
   loading,
-  searchQuery,
-  onSearchChange,
+  handleSearchChange,
   total,
   page,
   setPage,
@@ -23,20 +22,15 @@ function MoviesList({
     fetchData();
   }, [page, perPage, update]);
 
-  const filteredMovies = movies.filter((movie) =>
-    movie.Title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
     <>
-      <HeaderSearch onSearchChange={onSearchChange} value={searchQuery} />
+      <HeaderSearch  handleSearchChange={handleSearchChange} setUpdate={setUpdate} />
       <div className="moviesList">
-        {filteredMovies.map((movie) => (
+        {movies.map((movie) => (
           <MovieCard
             key={movie._id}
             movie={movie}
             setUpdate={setUpdate}
-            update={update}
           />
         ))}
         {loading && <RiseLoader color="#36d7b7" size={30} />}

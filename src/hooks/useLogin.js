@@ -19,6 +19,11 @@ export const useLogin = () => {
       setIsLoading(true);
       setError(null);
 
+      if (!username || !password || username.trim() === "" || password.trim() === "") {
+        setError("Username and password are required");
+        toast.error("Username and password are required");
+      }
+
       const response = await axios.post(
         `${API_URL_AUTH}/login`,
         {
@@ -40,8 +45,9 @@ export const useLogin = () => {
       const data = response.data;
 
       if (response.status !== 200) {
-        setError(data.error);
-        toast.error(data.error);
+        setIsLoading(false);
+        setError(data.message);
+        toast.error(data.message);
       } else {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data._id);
@@ -49,8 +55,10 @@ export const useLogin = () => {
         dispatch({ type: "LOGIN", payload: data });
       }
     } catch (error) {
-      setError("An error occurred during login.");
-      toast.error("An error occurred during login.");
+      if (error.response.status === 401) {
+        setError("Incorrect username or password");
+        toast.error("Incorrect username or password");
+      }
     } finally {
       setIsLoading(false);
     }

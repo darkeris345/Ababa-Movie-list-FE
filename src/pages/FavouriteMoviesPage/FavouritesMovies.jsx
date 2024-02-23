@@ -2,12 +2,21 @@ import { getFavouriteMovies } from "../../services/get";
 import { useState, useEffect } from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
-function FavouriteMovie({ onSearchChange, searchQuery, setUpdate, update }) {
-  const userId = localStorage.getItem("userId");
+import { useAuthContext } from "../../hooks/useAuthContext";
+function FavouriteMovie({
+  handleSearchChange,
+  searchQuery,
+  setUpdate,
+  update,
+}) {
+  const { user } = useAuthContext();
+
+  const userId = user?._id;
+
   const [favouriteList, setFavouriteList] = useState([]);
 
   const fetchDataFavourite = async () => {
-    const response = await getFavouriteMovies(userId);
+    const response = await getFavouriteMovies(userId, searchQuery);
     setFavouriteList(response);
   };
 
@@ -15,16 +24,15 @@ function FavouriteMovie({ onSearchChange, searchQuery, setUpdate, update }) {
     fetchDataFavourite();
   }, [update]);
 
-  const filteredMovies = favouriteList.filter((movie) =>
-    movie.Title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
     <>
-      <HeaderSearch onSearchChange={onSearchChange} value={searchQuery} />
+      <HeaderSearch
+        handleSearchChange={handleSearchChange}
+        setUpdate={setUpdate}
+      />
 
       <div className="moviesList">
-        {filteredMovies.map((movie) => {
+        {favouriteList.map((movie) => {
           return (
             <MovieCard
               key={movie._id}

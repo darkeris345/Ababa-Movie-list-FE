@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRegister } from "../../services/useRegister";
+import { useRegister } from "../../hooks/useRegister";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";

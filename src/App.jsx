@@ -29,7 +29,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await getAllDataPaginated(page, perPage);
+      const response = await getAllDataPaginated(page, perPage, searchQuery);
 
       const { movies, totalCount } = response.data;
 
@@ -71,7 +71,7 @@ function App() {
                 movies={movies}
                 loading={loading}
                 searchQuery={searchQuery}
-                onSearchChange={handleSearchChange}
+                handleSearchChange={handleSearchChange}
                 total={total}
                 page={page}
                 setPage={setPage}
@@ -88,12 +88,12 @@ function App() {
           path="/favourites"
           element={
             !user ? (
-              <Navigate to="/favourites" />
+              <Navigate to="/" />
             ) : (
               <FavouritesMovies
                 movies={movies}
                 searchQuery={searchQuery}
-                onSearchChange={handleSearchChange}
+                handleSearchChange={handleSearchChange}
                 setUpdate={setUpdate}
                 update={update}
               />

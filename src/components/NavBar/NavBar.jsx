@@ -44,7 +44,7 @@ function NavBar() {
               Movies
             </NavLink>
             <NavLink to="/favourites" className="activeLink">
-              Favorites
+              Favourites
             </NavLink>
           </nav>
 
