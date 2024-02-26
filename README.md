@@ -1,8 +1,42 @@
-# React + Vite
+# Ababa Movie List Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Movie List application for browsing and managing your favorite movies, you can add movies to your favorite list and remove them. This is a client side application which runs on the browser and relies on a server. You can download server side code from [here](https://github.com/darkeris345/Ababa-Movies-List-server) and run it to use this application.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To get started, first you need git and node.js installed.
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/movie-app.git
+   ```
+
+2. Navigate to the repository directory:
+
+   ```bash
+   cd movie-app
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm i
+   ```
+
+
+## Usage
+
+1. To start the application, run the following command in your terminal or VS Code:
+
+   ```bash
+   npm run dev
+   ```
+2. Open http://localhost:5173/ in your browser to view the application.
+
+
+## Author
+
+- Dmitrij Purynzin(https://github.com/darkeris345)

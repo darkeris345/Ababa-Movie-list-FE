@@ -9,7 +9,7 @@ import MoviesList from "./pages/Movies/MoviesList";
 import Register from "./pages/RegisterPage/Register";
 import Login from "./pages/LoginPage/Login";
 import FavouritesMovies from "./pages/FavouriteMoviesPage/FavouritesMovies";
-import PageNotFound from "./pages/PageNotFound";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -61,7 +61,7 @@ function App() {
     fetchData();
     localStorage.setItem("perPage", perPage);
     localStorage.setItem("page", page);
-  }, [page, update, perPage, searchQuery, sortQuery]);
+  }, [page, perPage, update, searchQuery, sortQuery]);
 
   return (
     <>
