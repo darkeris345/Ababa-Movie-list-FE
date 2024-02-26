@@ -11,7 +11,7 @@ To get started, first, you need git and node.js installed.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/movie-app.git
+   git clone https://github.com/your-username/Ababa-Movies-List-FE.git
    ```
 
 2. Navigate to the repository directory:
