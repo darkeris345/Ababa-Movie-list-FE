@@ -17,7 +17,7 @@ To get started, first, you need git and node.js installed.
 2. Navigate to the repository directory:
 
    ```bash
-   cd movie-app
+   cd Ababa-Movies-List-FE
    ```
 
 3. Install dependencies:
