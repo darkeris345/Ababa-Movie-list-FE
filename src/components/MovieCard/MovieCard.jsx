@@ -68,7 +68,6 @@ function MovieCard({ movie, setUpdate }) {
           height="500"
           image={Poster}
           alt={`${Title} Poster`}
-          sx={{}}
           loading="lazy"
         />
         <CardContent

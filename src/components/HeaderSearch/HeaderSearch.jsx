@@ -1,8 +1,8 @@
 import Input from "@mui/joy/Input";
+
 import "./HeaderSearch.scss";
 
 function HeaderSearch({ handleSearchChange, setUpdate }) {
-  
   const onChangeSearch = (event) => {
     handleSearchChange(event.target.value);
     setUpdate((update) => update + 1);
@@ -18,6 +18,7 @@ function HeaderSearch({ handleSearchChange, setUpdate }) {
         placeholder="Type movie title here..."
         onChange={onChangeSearch}
       />
+      
     </>
   );
 }

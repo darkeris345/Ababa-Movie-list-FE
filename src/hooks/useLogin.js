@@ -19,7 +19,12 @@ export const useLogin = () => {
       setIsLoading(true);
       setError(null);
 
-      if (!username || !password || username.trim() === "" || password.trim() === "") {
+      if (
+        !username ||
+        !password ||
+        username.trim() === "" ||
+        password.trim() === ""
+      ) {
         setError("Username and password are required");
         toast.error("Username and password are required");
       }
@@ -49,10 +54,13 @@ export const useLogin = () => {
         setError(data.message);
         toast.error(data.message);
       } else {
+        localStorage.setItem("perPage", 4);
+        localStorage.setItem("page", 1);
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data._id);
         localStorage.setItem("user", JSON.stringify(data));
         dispatch({ type: "LOGIN", payload: data });
+        window.location.reload();
       }
     } catch (error) {
       if (error.response.status === 401) {

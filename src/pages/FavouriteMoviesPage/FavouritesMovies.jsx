@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { RiseLoader } from "react-spinners";
 function FavouriteMovie({
   handleSearchChange,
   searchQuery,
   setUpdate,
   update,
+  loading,
 }) {
   const { user } = useAuthContext();
 
@@ -42,6 +44,7 @@ function FavouriteMovie({
             />
           );
         })}
+        {loading && <RiseLoader color="#36d7b7" size={30} />}
       </div>
     </>
   );

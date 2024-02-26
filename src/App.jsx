@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
+import { getAllDataPaginated } from "./services/get";
+import { ToastContainer } from "react-toastify";
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./pages/HomePage/Home";
 import MoviesList from "./pages/Movies/MoviesList";
@@ -8,20 +10,19 @@ import Register from "./pages/RegisterPage/Register";
 import Login from "./pages/LoginPage/Login";
 import FavouritesMovies from "./pages/FavouriteMoviesPage/FavouritesMovies";
 import PageNotFound from "./pages/PageNotFound";
-import { getAllDataPaginated } from "./services/get";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { user } = useAuthContext();
 
   // Pagination settings saved
-  const savedPerPage = parseInt(localStorage.getItem("perPage")) || 4;
-  const savedPage = parseInt(localStorage.getItem("page")) || 1;
+  const savedPerPage = parseInt(localStorage.getItem("perPage"));
+  const savedPage = parseInt(localStorage.getItem("page"));
 
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortQuery, setSortQuery] = useState("");
   const [update, setUpdate] = useState(false);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(savedPage);
@@ -29,7 +30,12 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await getAllDataPaginated(page, perPage, searchQuery);
+      const response = await getAllDataPaginated(
+        page,
+        perPage,
+        searchQuery,
+        sortQuery
+      );
 
       const { movies, totalCount } = response.data;
 
@@ -43,15 +49,19 @@ function App() {
       setLoading(false);
     }
   };
+  const handleSearchChange = (search) => {
+    setSearchQuery(search);
+  };
+
+  const handleSortChange = (sort) => {
+    setSortQuery(sort);
+  };
 
   useEffect(() => {
-    localStorage.setItem("perPage", perPage.toString());
-    localStorage.setItem("page", page.toString());
-  }, [page, update, perPage, searchQuery]);
-
-  const handleSearchChange = (query) => {
-    setSearchQuery(query);
-  };
+    fetchData();
+    localStorage.setItem("perPage", perPage);
+    localStorage.setItem("page", page);
+  }, [page, update, perPage, searchQuery, sortQuery]);
 
   return (
     <>
@@ -69,17 +79,18 @@ function App() {
             ) : (
               <MoviesList
                 movies={movies}
+                total={total}
                 loading={loading}
                 searchQuery={searchQuery}
                 handleSearchChange={handleSearchChange}
-                total={total}
+                sortQuery={sortQuery}
+                handleSortChange={handleSortChange}
                 page={page}
-                setPage={setPage}
                 perPage={perPage}
+                setPage={setPage}
                 setPerPage={setPerPage}
                 update={update}
                 setUpdate={setUpdate}
-                fetchData={fetchData}
               />
             )
           }
@@ -96,6 +107,7 @@ function App() {
                 handleSearchChange={handleSearchChange}
                 setUpdate={setUpdate}
                 update={update}
+                loading={loading}
               />
             )
           }
