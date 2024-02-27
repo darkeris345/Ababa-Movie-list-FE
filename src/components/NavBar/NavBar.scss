@@ -13,12 +13,26 @@
     display: flex;
     flex-direction: column;
 
-    .userHeader {
+    .userContent {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 6rem;
+
+        .userHeader {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+    }
+
+    .hidden {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
-        gap: 1rem;
-        padding: 1rem;
+        align-items: end;
     }
 }
 
@@ -34,7 +48,6 @@
         transition: color 0.3s, border-left 0.3s, border-right 0.3s;
     }
 }
-
 
 .navbar {
     .activeLink.active {

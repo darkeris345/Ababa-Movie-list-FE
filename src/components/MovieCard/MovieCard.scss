@@ -1,14 +1,6 @@
-.movieCard {
-    max-width: 320px;
-    margin: 2rem;
-    display: inline-block;
+.adminButtons{
+    display: flex;
+    justify-content: end;
+    font-size: 1.5rem;
 
-    .movieContent {
-        display: "flex";
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 2rem;
-        column-gap: 2rem;
-        min-height: 200px;
-    }
 }

@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import MovieInfo from "../MovieInfo/MovieInfo";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import AdminMovieButtons from "../AdminMovieButtons/AdminMovieButtons";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { getFavouriteMovies } from "../../services/get";
@@ -18,6 +19,7 @@ function MovieCard({ movie, setUpdate }) {
   const { _id, Title, Year, Poster, Genre, Runtime } = movie;
   const { user } = useAuthContext();
   const userId = user?._id;
+  const userType = user?.type;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavourite, setIsFavourite] = useState(false);
@@ -145,6 +147,11 @@ function MovieCard({ movie, setUpdate }) {
               />
             )}
           </div>
+          {userType === "admin" && (
+            <div className="adminButtons">
+              <AdminMovieButtons movie={movie} setUpdate={setUpdate} />
+            </div>
+          )}
         </CardContent>
       </Card>
       {isModalOpen && (

@@ -17,7 +17,7 @@ function MovieInfo({ movie, open, onClose }) {
           variant="outlined"
           sx={{
             width: 300,
-            height: 200,
+            height: 300,
             borderRadius: "lg",
             p: 5,
             boxShadow: "lg",

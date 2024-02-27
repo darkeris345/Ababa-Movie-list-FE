@@ -65,7 +65,7 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar  setUpdate={setUpdate} update={update}/>
       <Routes>
         <Route
           path="/"
@@ -123,7 +123,7 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 
-      <ToastContainer position="top-center" autoClose={1500} />
+      <ToastContainer position="top-center" autoClose={500} />
     </>
   );
 }
