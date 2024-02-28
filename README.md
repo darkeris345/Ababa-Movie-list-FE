@@ -11,7 +11,7 @@ To get started, first, you need git and node.js installed.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/Ababa-Movies-List-FE.git
+   git clone https://github.com/darkeris345/Ababa-Movies-List-FE.git
    ```
 
 2. Navigate to the repository directory:
@@ -29,7 +29,13 @@ To get started, first, you need git and node.js installed.
 
 ## Usage
 
-1. To start the application, run the following command in your terminal or VS Code:
+1. Create .env file with your API key: 
+```bash
+VITE_API_URL=http://localhost:3000/movies
+VITE_AUTH_API_URL=http://localhost:3000/users
+```
+
+2. To start the application, run the following command in your terminal or VS Code:
 
    ```bash
    npm run dev
