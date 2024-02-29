@@ -1,9 +1,9 @@
 import { getFavouriteMovies } from "../../services/get";
 import { useState, useEffect } from "react";
-import MovieCard from "../../components/MovieCard/MovieCard";
-import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { RiseLoader } from "react-spinners";
+import MovieCard from "../../components/MovieCard/MovieCard";
+import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
 function FavouriteMovie({
   handleSearchChange,
   searchQuery,

@@ -5,6 +5,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import "./RegisterForm.scss";
 import { Link } from "react-router-dom";
+import { BarLoader } from "react-spinners";
 
 function RegisterForm() {
   const [username, setUsername] = useState("");
@@ -70,6 +71,12 @@ function RegisterForm() {
         >
           Create account
         </Button>
+        {isLoading && (
+          <>
+            <Typography>Loging...</Typography>
+            <BarLoader color="#36d7b7" />
+          </>
+        )}
         {error && <Typography color="error">{error}</Typography>}
       </Box>
     </div>

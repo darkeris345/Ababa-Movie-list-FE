@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
 import { Box, Typography, TextField, Button } from "@mui/material";
+import { BarLoader } from "react-spinners";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import "./LoginForm.scss";
@@ -69,6 +70,12 @@ function LoginForm() {
         >
           Log in
         </Button>
+        {isLoading && (
+          <>
+            <Typography>Loging...</Typography>
+            <BarLoader color="#36d7b7" />
+          </>
+        )}
         {error && <Typography color="error">{error}</Typography>}
       </Box>
     </div>
