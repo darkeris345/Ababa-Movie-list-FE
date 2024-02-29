@@ -51,7 +51,7 @@ function LoginForm() {
             value={password}
             InputProps={{
               endAdornment: (
-                <span onClick={() => setShowPassword(!showPassword)}>
+                <span onClick={() => setShowPassword(!showPassword)} className="eyeIcon">
                   {showPassword ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
                 </span>
               ),
