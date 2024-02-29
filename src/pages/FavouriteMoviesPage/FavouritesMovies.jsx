@@ -34,16 +34,18 @@ function FavouriteMovie({
       />
 
       <div className="moviesList">
-        {favouriteList.map((movie) => {
-          return (
+        {favouriteList.length > 0 ? (
+          favouriteList.map((movie) => (
             <MovieCard
               key={movie._id}
               movie={movie}
               favouriteList={favouriteList}
               setUpdate={setUpdate}
             />
-          );
-        })}
+          ))
+        ) : (
+          <h1>The favourite list is empty</h1>
+        )}
         {loading && <RiseLoader color="#36d7b7" size={30} />}
       </div>
     </>

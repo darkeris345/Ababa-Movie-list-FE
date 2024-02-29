@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useRegister } from "../../hooks/useRegister";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+import { Box, Typography, TextField, Button } from "@mui/material";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import "./RegisterForm.scss";
 import { Link } from "react-router-dom";
 
 function RegisterForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const { registerUser, isLoading, error } = useRegister();
 
   const handleRegistration = async (e) => {
@@ -46,9 +47,16 @@ function RegisterForm() {
             required
             id="password"
             label="Password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            InputProps={{
+              endAdornment: (
+                <span onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
+                </span>
+              ),
+            }}
           />
         </div>
         <Typography sx={{ mb: 2 }} variant="body2" gutterBottom>
