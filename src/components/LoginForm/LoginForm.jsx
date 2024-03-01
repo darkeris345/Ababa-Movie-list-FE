@@ -51,7 +51,10 @@ function LoginForm() {
             value={password}
             InputProps={{
               endAdornment: (
-                <span onClick={() => setShowPassword(!showPassword)} className="eyeIcon">
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="eyeIcon"
+                >
                   {showPassword ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
                 </span>
               ),
@@ -72,8 +75,25 @@ function LoginForm() {
         </Button>
         {isLoading && (
           <>
-            <Typography>Loging...</Typography>
-            <BarLoader color="#36d7b7" />
+            <Typography
+              sx={{
+                mt: 2,
+                mb: 2,
+                display: "block",
+                textAlign: "center",
+                color: "#e84d15",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                textTransform: "uppercase",
+              }}
+            >
+              Logging in...
+            </Typography>
+            <BarLoader
+              color="#e84d15"
+              speedMultiplier={0.5}
+              cssOverride={{ margin: "0 auto", width: "300px" }}
+            />
           </>
         )}
         {error && <Typography color="error">{error}</Typography>}
