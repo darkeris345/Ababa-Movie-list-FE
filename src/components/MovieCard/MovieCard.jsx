@@ -16,9 +16,9 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import "./MovieCard.scss";
 
 function MovieCard({ movie, setUpdate }) {
-  const { _id, Title, Year, Poster, Genre, Runtime } = movie;
+  const { Title, Year, Poster, Genre, Runtime } = movie;
   const { user } = useAuthContext();
-  const userId = user?._id;
+  const userId = user?.id;
   const userType = user?.type;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,15 +29,14 @@ function MovieCard({ movie, setUpdate }) {
   };
 
   const handleFavourite = async () => {
-    setIsFavourite(!isFavourite);
-
+    setIsFavourite((isFavourite) => !isFavourite);
     try {
       if (isFavourite) {
-        await deleteMovieFromFavorites(userId, _id);
+        await deleteMovieFromFavorites(userId, movie._id);
         toast.warning("Movie removed from favorites");
         setUpdate((update) => update + 1);
       } else {
-        await updateData(userId, { favouriteListes: _id });
+        await updateData(userId, { favouritesListes: movie._id });
         toast.success("Movie added to favorites");
         setUpdate((update) => update + 1);
       }
@@ -45,20 +44,22 @@ function MovieCard({ movie, setUpdate }) {
       console.error("Error updating favorite status:", error);
     }
   };
+  
+  const checkFavouriteStatus = async () => {
+    try {
+      const response = await getFavouriteMovies(userId);
+      const isMovieFavorite = response.some(
+        (favMovie) => favMovie._id === movie._id
+      );
+      setIsFavourite(isMovieFavorite);
+    } catch (error) {
+      console.error("Error checking favorites:", error);
+    }
+  };
 
   useEffect(() => {
-    const checkFavouriteStatus = async () => {
-      try {
-        const response = await getFavouriteMovies(userId);
-        const isMovieFavorite = response.some((movie) => movie._id === _id);
-        setIsFavourite(isMovieFavorite);
-      } catch (error) {
-        console.error("Error checking favorites:", error);
-      }
-    };
-
     checkFavouriteStatus();
-  }, [userId, _id]);
+  }, [userId, movie._id]);
 
   return (
     <>

@@ -48,22 +48,22 @@ export const useLogin = () => {
       }, 2000);
 
       const data = response.data;
+ 
+      localStorage.setItem("perPage", 4);
+      localStorage.setItem("page", 1);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.id);
+      localStorage.setItem("user", JSON.stringify(data));
+      dispatch({ type: "LOGIN", payload: data });
+      window.location.reload();
 
       if (response.status !== 200) {
         setIsLoading(false);
         setError(data.message);
         toast.error(data.message);
-      } else {
-        localStorage.setItem("perPage", 4);
-        localStorage.setItem("page", 1);
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userId", data._id);
-        localStorage.setItem("user", JSON.stringify(data));
-        dispatch({ type: "LOGIN", payload: data });
-        window.location.reload();
       }
     } catch (error) {
-      if (error.response.status === 401) {
+      if (error.response.status === 400) {
         setError("Incorrect username or password");
         toast.error("Incorrect username or password");
       }

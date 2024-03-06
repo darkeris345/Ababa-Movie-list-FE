@@ -13,7 +13,7 @@ function FavouriteMovie({
 }) {
   const { user } = useAuthContext();
 
-  const userId = user?._id;
+  const userId = user?.id;
 
   const [favouriteList, setFavouriteList] = useState([]);
 

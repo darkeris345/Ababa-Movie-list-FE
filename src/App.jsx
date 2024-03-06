@@ -59,6 +59,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
+    console.log(`Fetching`);
     localStorage.setItem("perPage", perPage);
     localStorage.setItem("page", page);
   }, [page, perPage, update, searchQuery, sortQuery]);

@@ -23,7 +23,7 @@ export const deleteMovieFromFavorites = async (userId, movieId) => {
 
   try {
     const response = await axios.patch(`${API_URL_AUTH}/${userId}/${movieId}`, {
-      $pull: { favouriteListes: movieId },
+      $pull: { favouritesListes: movieId },
     });
     return response.data;
   } catch (error) {

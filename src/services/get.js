@@ -8,7 +8,6 @@ export const getAllDataPaginated = async (
   searchQuery,
   sortQuery
 ) => {
-  
   const token = localStorage.getItem("token");
   if (!token) {
     return { data: null, totalCount: 0 };
@@ -17,7 +16,7 @@ export const getAllDataPaginated = async (
 
   try {
     const response = await axios.get(
-      `${API_URL}?_page=${page}&_per_page=${count}${
+      `${API_URL}?page=${page}&limit=${count}${
         searchQuery ? `&Title=${searchQuery}` : ""
       }${sortQuery ? `&sort=${sortQuery}` : ""}`
     );
