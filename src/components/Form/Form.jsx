@@ -146,9 +146,9 @@ function Form({ isOpen, onClose, setUpdate, movieDetails }) {
 
           <TextField
             sx={{ mb: 2, width: "100%" }}
-            label="Poster"
+            label="Poster url"
             type="text"
-            placeholder="Poster"
+            placeholder="Poster url"
             defaultValue={movieDetails?.Poster}
             {...register("Poster", { required: "Poster is required" })}
             error={!!errors.Poster}

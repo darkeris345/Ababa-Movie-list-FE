@@ -47,21 +47,19 @@ export const useRegister = () => {
         }
       );
 
-      const data = response.data;
-
       if (response.status === 201) {
         toast.success("Registration successful");
         setTimeout(() => {
           navigate("/login");
         }, 2000);
-      } else {
-        setError(data.error || "An error occurred during registration.");
-        toast.error(data.error || "An error occurred during registration.");
       }
     } catch (error) {
-      console.error(error.message);
-      setError("An error occurred during registration.");
-      toast.error("An error occurred during registration.");
+      const errorMessage =
+        error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : "An error occurred";
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }

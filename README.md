@@ -32,7 +32,7 @@ To get started, first, you need git and node.js installed.
 1. Create .env file with your API key: 
 ```bash
 VITE_API_URL=http://localhost:3000/movies
-VITE_AUTH_API_URL=http://localhost:3000/users
+VITE_AUTH_API_URL=http://localhost:3000/user
 ```
 
 2. To start the application, run the following command in your terminal or VS Code:
