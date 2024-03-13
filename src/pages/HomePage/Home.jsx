@@ -8,10 +8,10 @@ function Home() {
     <div className="homeContainer">
       <div className="homeContent">
         <Typography variant="h2" gutterBottom>
-          Welcome to Ababa Movie App
+          Welcome to Movie App
         </Typography>
         <Typography variant="body1" paragraph>
-          Discover movies and add them to your favorites list
+          Discover movies and add them to your favorites list with ease.
         </Typography>
         <div className="buttonsAuth">
           <Link to="/register">
