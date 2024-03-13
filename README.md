@@ -1,4 +1,4 @@
-#Movie List Front-end
+# Movie List Front-end
 
 A Movie List application for browsing and managing your favorite movies, you can add movies to your favorite list and remove them. This is a client-side application that runs on the browser and relies on a server. You can download server-side code from [here](https://github.com/darkeris345/Ababa-Movies-List-server) and run it to use this application.
 
