@@ -1,6 +1,6 @@
 # Movie List Front-end
 
-A Movie List application for browsing and managing your favorite movies, you can add movies to your favorite list and remove them. This is a client-side application that runs on the browser and relies on a server. You can download server-side code from [here](https://github.com/darkeris345/Ababa-Movies-List-server) and run it to use this application.
+A Movie List application for browsing and managing your favorite movies, you can add movies to your favorite list and remove them. This is a client-side application that runs on the browser and relies on a server. You can download server-side code from [here](https://github.com/darkeris345/Movies-List-server) and run it to use this application.
 
 ## Getting Started
 
@@ -11,13 +11,13 @@ To get started, first, you need git and node.js installed.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/darkeris345/Ababa-Movies-List-FE.git
+   git clone https://github.com/darkeris345/Movies-List-FE.git
    ```
 
 2. Navigate to the repository directory:
 
    ```bash
-   cd Ababa-Movies-List-FE
+   cd Movies-List-FE
    ```
 
 3. Install dependencies:
